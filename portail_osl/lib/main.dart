@@ -47,10 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Widget buildButton(String url, String text) {
+  Widget buildButton(String url, String imagePath) {
     return SizedBox(
-      width: 300, // Set the desired width
-      height: 300, // Set the desired height
+      width: 250, // Set the desired width
+      height: 250, // Set the desired height
       child: ElevatedButton(
         onPressed: () {
           openDefaultBrowser(url);
@@ -63,41 +63,54 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           padding: const EdgeInsets.all(8.0),
         ),
-        child: Text(
-          text,
-          style: const TextStyle(color: Colors.white, fontSize: 20),
+        child: Image.asset(
+          imagePath,
+          fit: BoxFit.contain, // Adjust this as needed
         ),
       ),
     );
   }
 
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const AppDrawer(),
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(color: Colors.white), // Set the title text color to white
-        ),
-        backgroundColor: const Color(0xFF0aa8d0),
-        iconTheme: const IconThemeData(color: Colors.white), // Set the hamburger menu icon color to white
+Widget build(BuildContext context) {
+  return Scaffold(
+    drawer: const AppDrawer(),
+    appBar: AppBar(
+      title: Text(
+        widget.title,
+        style: const TextStyle(color: Colors.white), // Set the title text color to white
       ),
-      body: Container(
-        color: const Color(0xFF212121), // Set your desired background color here
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              buildButton("https://online.adp.com/signin/v1/?APPID=WFNPortal&productId=80e309c3-7085-bae1-e053-3505430b5495&returnURL=https://workforcenow.adp.com/&callingAppId=WFN", "ADP"),
-              buildButton("https://oslfuse.app.appery.io/app/splash.html", "Fuse"),
-              buildButton("https://oslu.docebosaas.com/learn", "Learn"),
-              buildButton("https://oslperx.rewardsnation.com/#/login", "Perx"),
-            ],
-          ),
+      backgroundColor: const Color(0xFF0aa8d0),
+      iconTheme: const IconThemeData(color: Colors.white), // Set the hamburger menu icon color to white
+    ),
+    body: Container(
+      color: const Color(0xFF212121), // Set your desired background color here
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                buildButton("https://online.adp.com/signin/v1/?APPID=WFNPortal&productId=80e309c3-7085-bae1-e053-3505430b5495&returnURL=https://workforcenow.adp.com/&callingAppId=WFN", "assets/adp_logo.png"),
+                buildButton("https://oslfuse.app.appery.io/app/splash.html", "assets/fuse_logo.png"),
+                buildButton("https://oslu.docebosaas.com/learn", "assets/learn_logo.png"),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [       
+                buildButton("https://oslperx.rewardsnation.com/#/login", "assets/perx_logo.png"),
+                buildButton("msteams://", "assets/microsoft_teams_logo.png"),
+                buildButton("https://outlook.office.com/", "assets/outlook_logo.png"),
+              ],
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
