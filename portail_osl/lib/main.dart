@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:portail_osl/main_drawer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +33,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void openDefaultBrowser(String url) async {
+    try {
+      Uri uri = Uri.parse(url);
+
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri); // Launches the default web browser on any platform
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      print('Error launching URL: $e');
+    }
+  }
+
+  Widget buildButton(String url, String text) {
+    return SizedBox(
+      width: 300, // Set the desired width
+      height: 300, // Set the desired height
+      child: ElevatedButton(
+        onPressed: () {
+          openDefaultBrowser(url);
+        },
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white, 
+          backgroundColor: const Color(0xFF0aa8d0), // Set the background color
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0), // Set the border radius
+          ),
+          padding: const EdgeInsets.all(8.0),
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +85,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         color: const Color(0xFF212121), // Set your desired background color here
-        child: const Center(
-          child: Text(
-            "",
-            style: TextStyle(color: Colors.white, fontSize: 30), // Set the text color to white
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              buildButton("https://online.adp.com/signin/v1/?APPID=WFNPortal&productId=80e309c3-7085-bae1-e053-3505430b5495&returnURL=https://workforcenow.adp.com/&callingAppId=WFN", "ADP"),
+              buildButton("https://oslfuse.app.appery.io/app/splash.html", "Fuse"),
+              buildButton("https://oslu.docebosaas.com/learn", "Learn"),
+              buildButton("https://oslperx.rewardsnation.com/#/login", "Perx"),
+            ],
           ),
         ),
       ),
