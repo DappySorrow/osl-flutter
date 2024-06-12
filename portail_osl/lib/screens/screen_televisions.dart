@@ -158,6 +158,7 @@ Future<List<Television>> _load() async {
     TextEditingController refreshRateController = TextEditingController();
     TextEditingController articleNumController = TextEditingController();
     TextEditingController bluetoothController = TextEditingController();
+    TextEditingController hdmiController = TextEditingController();
     TextEditingController linkController = TextEditingController();
 
     await showDialog(
@@ -182,6 +183,7 @@ Future<List<Television>> _load() async {
                   _buildTextField(refreshRateController, 'Vitesse de rafraichissement'),
                   _buildTextField(articleNumController, "Numéro d'article"),
                   _buildTextField(bluetoothController, "Bluetooth"),
+                  _buildTextField(hdmiController, "HDMI"),
                   _buildTextField(linkController, 'Lien'),
                   const SizedBox(height: 16.0),
                   Row(
@@ -200,8 +202,9 @@ Future<List<Television>> _load() async {
                           String legs = legsController.text.trim();
                           String resolution = resolutionController.text.trim();
                           String refreshRate = refreshRateController.text.trim();
-                          String articleNum = articleNumController.text.trim();
                           String bluetooth = bluetoothController.text.trim();
+                          String hdmi = hdmiController.text.trim();
+                          String articleNum = articleNumController.text.trim();
                           String link = linkController.text.trim();
 
                           // Validate input
@@ -216,9 +219,10 @@ Future<List<Television>> _load() async {
                               refreshRate.isEmpty ||
                               articleNum.isEmpty ||
                               bluetooth.isEmpty ||
+                              hdmi.isEmpty ||
                               link.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Please fill all fields')),
+                              const SnackBar(content: Text('Veilez remplir tous les champs')),
                             );
                             return;
                           }
@@ -227,12 +231,12 @@ Future<List<Television>> _load() async {
                           final directory = await getApplicationDocumentsDirectory();
                           final file = File('${directory.path}/televisions.txt');
                           await file.writeAsString(
-                            '$tvId;$brand;$model;$size;$height;$width;$depth;$legs;$resolution;$refreshRate;$articleNum;$bluetooth;$link\n',
+                            '$tvId;$brand;$model;$size;$height;$width;$depth;$legs;$resolution;$refreshRate;$articleNum;$bluetooth;$hdmi;$link\n',
                             mode: FileMode.append,
                           );
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Television added successfully')),
+                            const SnackBar(content: Text('Télévision ajoutée avec succès')),
                           );
 
                           // Refresh the UI or perform any additional actions
@@ -347,6 +351,8 @@ void _showDetails(BuildContext context, Television television) {
             Text('Distance entre les pattes: ${television.legs}″'),
             Text('Résolution: ${television.resolution}'),
             Text('Vitesse de rafraichissement: ${television.refreshRate}Hz'),
+            Text('Bluetooth: ${television.bluetooth}'),
+            Text('HDMI: ${television.hdmi}'),
             RichText(
               text: TextSpan(
                 text: 'Lien: ',

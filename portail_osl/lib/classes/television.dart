@@ -11,6 +11,7 @@ class Television {
   final String refreshRate;
   final String articleNumber;
   final String bluetooth;
+  final String hdmi;
   final String link;
 
   Television({
@@ -26,12 +27,13 @@ class Television {
     required this.refreshRate,
     required this.articleNumber,
     required this.bluetooth,
+    required this.hdmi,
     required this.link,
   });
 
   factory Television.fromString(String line) {
     List<String> fields = line.split(';');
-    if (fields.length != 13) {
+    if (fields.length != 14) {
       print('Invalid line: $line'); // Debug print
       throw RangeError('Invalid line length: ${fields.length}');
     }
@@ -48,7 +50,8 @@ class Television {
       refreshRate: fields[9],
       articleNumber: fields[10],
       bluetooth: fields[11],
-      link: fields[12],
+      hdmi: fields[12],
+      link: fields[13],
     );
   }
 }
