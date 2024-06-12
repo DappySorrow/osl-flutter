@@ -255,7 +255,7 @@ class ItemsContainerItems extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               BarcodeWidget(
-                barcode: Barcode.code128(), // Choose the type of barcode
+                barcode: Barcode.upcA(), // Choose the type of barcode
                 data: item.articleNum,
                 width: 200,
                 height: 80,

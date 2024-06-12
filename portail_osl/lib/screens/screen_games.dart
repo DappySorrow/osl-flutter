@@ -267,10 +267,10 @@ class GamesContainerGames extends StatelessWidget {
               Text('Console: ${game.console}'),
               const SizedBox(height: 10),
               BarcodeWidget(
-                barcode: Barcode.code128(), // Choose the type of barcode
+                barcode: Barcode.upcA(), // Choose the type of barcode
                 data: game.articleNum,
-                width: 200,
-                height: 80,
+                width: 300,
+                height: 100,
               ),
             ],
           ),

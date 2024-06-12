@@ -366,7 +366,7 @@ void _showDetails(BuildContext context, Television television) {
             ),
             const SizedBox(height: 16), // Add some space between the specs and the barcode
             Center( child: BarcodeWidget(
-              barcode: Barcode.code128(), // Choose the type of barcode
+              barcode: Barcode.upcA(), // Choose the type of barcode
               data: television.articleNumber,
               width: 200,
               height: 80,
