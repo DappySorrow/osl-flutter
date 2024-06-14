@@ -172,6 +172,13 @@ Future<void> _addItemToFile(BuildContext context) async {
                         return;
                       }
 
+                      if(articleNum.length != 12){
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Le CUP doit être de 12 caractères')),
+                            );
+                            return;
+                          }
+
                       // Add the game to the file
                       final directory = await getApplicationDocumentsDirectory();
                       final file = File('${directory.path}/items.txt');

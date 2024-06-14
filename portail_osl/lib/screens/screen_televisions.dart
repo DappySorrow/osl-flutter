@@ -227,6 +227,13 @@ Future<List<Television>> _load() async {
                             return;
                           }
 
+                          if(articleNum.length != 12){
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Le CUP doit être de 12 caractères')),
+                            );
+                            return;
+                          }
+
                           // Add the television to the file
                           final directory = await getApplicationDocumentsDirectory();
                           final file = File('${directory.path}/televisions.txt');
