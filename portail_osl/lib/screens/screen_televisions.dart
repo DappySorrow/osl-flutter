@@ -167,7 +167,9 @@ Future<List<Television>> _load() async {
         return Dialog(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: SingleChildScrollView(
+            child: Container(
+              height: 500,
+              child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,6 +261,8 @@ Future<List<Television>> _load() async {
                 ],
               ),
             ),
+            )
+            
           ),
         );
       },
