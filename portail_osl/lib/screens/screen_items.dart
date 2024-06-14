@@ -151,7 +151,7 @@ Future<void> _addItemToFile(BuildContext context) async {
               ),
               TextField(
                 controller: articleNumController,
-                decoration: const InputDecoration(labelText: "Numéro d'article"),
+                decoration: const InputDecoration(labelText: "CUP"),
               ),
               const SizedBox(height: 16.0),
               Row(
