@@ -112,8 +112,8 @@ class TelevisionsContainerState extends State<TelevisionsContainer> {
 
 Future<List<Television>> _load() async {
   try {
-    final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/televisions.txt');
+    //final directory = await getApplicationDocumentsDirectory();
+    final file = File('./files/televisions.txt');
 
     if (!file.existsSync()) {
       print('File does not exist');
@@ -237,8 +237,8 @@ Future<List<Television>> _load() async {
                           }
 
                           // Add the television to the file
-                          final directory = await getApplicationDocumentsDirectory();
-                          final file = File('${directory.path}/televisions.txt');
+                          //final directory = await getApplicationDocumentsDirectory();
+                          final file = File('./files/televisions.txt');
                           await file.writeAsString(
                             '$tvId;$brand;$model;$size;$height;$width;$depth;$legs;$resolution;$refreshRate;$articleNum;$bluetooth;$hdmi;$link\n',
                             mode: FileMode.append,
@@ -410,8 +410,8 @@ void _showDetails(BuildContext context, Television television) {
 
   Future<void> _delete(BuildContext context, Television television) async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/televisions.txt');
+      //final directory = await getApplicationDocumentsDirectory();
+      final file = File('./files/televisions.txt');
 
       if (file.existsSync()) {
         List<String> lines = await file.readAsLines();

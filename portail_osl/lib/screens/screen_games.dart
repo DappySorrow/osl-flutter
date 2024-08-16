@@ -110,8 +110,8 @@ class GamesContainerState extends State<GamesContainer> {
 
   Future<List<Game>> _loadGames() async {
   try {
-    final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/games.txt');
+    //final directory = await getApplicationDocumentsDirectory();
+    final file = File('./files/games.txt');
 
     if (!file.existsSync()) {
       return [];
@@ -186,8 +186,8 @@ Future<void> _addGameToFile(BuildContext context) async {
                           }
 
                       // Add the game to the file
-                      final directory = await getApplicationDocumentsDirectory();
-                      final file = File('${directory.path}/games.txt');
+                      //final directory = await getApplicationDocumentsDirectory();
+                      final file = File('./files/games.txt');
                       await file.writeAsString('$gameId;$name;$console;$articleNum\n', mode: FileMode.append);
 
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -298,8 +298,8 @@ class GamesContainerGames extends StatelessWidget {
 
   Future<void> _deleteGame(BuildContext context, Game game) async {
   try {
-    final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/games.txt');
+    //final directory = await getApplicationDocumentsDirectory();
+    final file = File('./files/games.txt');
 
     if (file.existsSync()) {
       List<String> lines = await file.readAsLines();
